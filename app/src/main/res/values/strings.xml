@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">currencyCalculate</string>
+    <string name="calculate_currency_rate">환율 계산</string>
+    <string name="send_country">송금국가   :</string>
+    <string name="receive_country">수취국가   :</string>
+    <string name="currency_rate">환율    :</string>
+    <string name="send_amount">송금액    :</string>
+    <string name="view_date">조회시간    :</string>
+    <string name="receive_amount">수취금액    :</string>
+    <string name="receive_amount_format">수취금액은 %s 입니다</string>
+    <string name="select_receive_country">수취국가를 선택해주세요.</string>
+    <string name="receive_country_format">%s(%s)</string>
+    <string name="usd">USD</string>
+    <string name="change">변경</string>
+    <string name="not_invalid_form_rate_from_to_type">올바른 환율 형식이 아닙니다.</string>
+    <string name="rate_text_format">%s %s/%s</string>
+    <string name="send_amount_result_format">수취금액은 %s %s입니다.</string>
+    <string name="invalid_amount">송금액이 바르지 않습니다</string>
+    <string name="empty" />
+    <string name="unexpected_error_message">예기치 못한 에러기 발생했습니다.</string>
 </resources>

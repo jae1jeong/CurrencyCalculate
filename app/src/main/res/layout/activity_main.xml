@@ -1,18 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.jae1jeong.currencycalculate.presentation.MainViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.MainActivity">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/calculate_currency_rate"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_send_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="@string/send_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="미국(USD)"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_send_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_send_country"
+            app:layout_constraintTop_toTopOf="@+id/tv_send_country" />
+
+        <TextView
+            android:id="@+id/tv_receive_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/receive_country"
+            app:layout_constraintStart_toStartOf="@+id/tv_send_country"
+            app:layout_constraintTop_toBottomOf="@+id/tv_send_country" />
+
+        <TextView
+            android:id="@+id/tv_receive_country_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/receive_country_format(viewModel.currentReceiveCountry.countryName, viewModel.currentReceiveCountry.countryCode)}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_receive_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_receive_country"
+            app:layout_constraintTop_toTopOf="@+id/tv_receive_country" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_receive_country_change"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_receive_country_value"
+            app:layout_constraintStart_toEndOf="@+id/tv_receive_country_value"
+            app:layout_constraintTop_toTopOf="@+id/tv_receive_country_value" />
+
+
+        <TextView
+            android:id="@+id/tv_currency_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/currency_rate"
+            app:layout_constraintStart_toStartOf="@+id/tv_receive_country"
+            app:layout_constraintTop_toBottomOf="@+id/tv_receive_country" />
+
+        <TextView
+            android:id="@+id/tv_currency_rate_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:currentRate="@{viewModel.currentRate}"
+            android:fromTo="@{viewModel.currentFromTo}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_currency_rate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_currency_rate"
+            app:layout_constraintTop_toTopOf="@+id/tv_currency_rate" />
+
+
+        <TextView
+            android:id="@+id/tv_view_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/view_date"
+            app:layout_constraintStart_toStartOf="@+id/tv_currency_rate"
+            app:layout_constraintTop_toBottomOf="@+id/tv_currency_rate" />
+
+        <TextView
+            android:id="@+id/tv_view_date_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timeStamp="@{viewModel.currentTimeStamp}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_view_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_view_date"
+            app:layout_constraintTop_toTopOf="@+id/tv_view_date" />
+
+        <TextView
+            android:id="@+id/tv_send_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/send_amount"
+            app:layout_constraintStart_toStartOf="@+id/tv_send_country"
+            app:layout_constraintTop_toBottomOf="@+id/tv_view_date" />
+
+        <EditText
+            android:id="@+id/et_send_amount"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="6dp"
+            android:background="@null"
+            android:minWidth="100dp"
+            android:text="0"
+            android:inputType="number"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_send_amount"
+            app:layout_constraintEnd_toStartOf="@+id/tv_currency_type"
+            app:layout_constraintStart_toEndOf="@+id/tv_send_amount"
+            app:layout_constraintTop_toTopOf="@+id/tv_send_amount" />
+
+        <TextView
+            android:id="@+id/tv_currency_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/usd"
+            app:layout_constraintBottom_toBottomOf="@+id/et_send_amount"
+            app:layout_constraintEnd_toEndOf="@+id/tv_view_date_value"
+
+            app:layout_constraintTop_toTopOf="@+id/et_send_amount" />
+
+        <TextView
+            android:id="@+id/tv_error_message"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="@{viewModel.invalidInRangeValueEvent ? View.VISIBLE : View.GONE}"
+            android:layout_height="wrap_content"
+            android:text="@{@string/invalid_amount}"
+            android:textColor="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_calculate_result" />
+        <TextView
+            android:id="@+id/tv_calculate_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:currentRate="@{viewModel.currentRate}"
+            android:sendAmount="@{viewModel.currentSendAmount}"
+            android:receiveCountryCode="@{viewModel.currentReceiveCountry.countryCode}"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_send_amount"
+            app:layout_constraintVertical_bias="0.16"
+            tools:layout_editor_absoluteX="0dp"
+            tools:text="수취금액은 113,004.98 KRW 입니다" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

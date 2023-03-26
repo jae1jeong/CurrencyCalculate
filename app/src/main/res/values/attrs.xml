@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <declare-styleable name="KeyValueTextView">
+        <attr name="splitText" format="string" />
+    </declare-styleable>
+    <declare-styleable name="KeyValueItem">
+        <attr name="isKey" format="boolean" />
+    </declare-styleable>
+</resources>
+
